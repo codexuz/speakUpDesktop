@@ -1,44 +1,27 @@
-const { FusesPlugin } = require('@electron-forge/plugin-fuses');
-const { FuseV1Options, FuseVersion } = require('@electron/fuses');
+import { MakerSquirrel } from "@electron-forge/maker-squirrel";
 
-module.exports = {
+const config = {
   packagerConfig: {
-    asar: true,
+    icon: "./icon",
+    executableName: "SpeakUp",
   },
-  rebuildConfig: {},
   makers: [
-    {
-      name: '@electron-forge/maker-squirrel',
-      config: {},
-    },
-    {
-      name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
-    },
-    {
-      name: '@electron-forge/maker-deb',
-      config: {},
-    },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {},
-    },
-  ],
-  plugins: [
-    {
-      name: '@electron-forge/plugin-auto-unpack-natives',
-      config: {},
-    },
-    // Fuses are used to enable/disable various Electron functionality
-    // at package time, before code signing the application
-    new FusesPlugin({
-      version: FuseVersion.V1,
-      [FuseV1Options.RunAsNode]: false,
-      [FuseV1Options.EnableCookieEncryption]: true,
-      [FuseV1Options.EnableNodeOptionsEnvironmentVariable]: false,
-      [FuseV1Options.EnableNodeCliInspectArguments]: false,
-      [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: true,
-      [FuseV1Options.OnlyLoadAppFromAsar]: true,
+    new MakerSquirrel({
+      // CamelCase version without spaces
+      name: "SpeakUp",
+      // Mandatory metadata for Squirrel.Windows
+      authors: "Javlon",
+      description:
+        "SpeakUp Desktop Application - Practice and improve your speaking skills",
+      config: {
+        setupIcon: "./icon.ico",
+        setupExe: "SpeakUpSetup.exe",
+        iconUrl: "https://speakup.edumoacademy.uz/icon.ico",
+        createDesktopShortcut: true,
+        createStartMenuShortcut: true,
+      },
     }),
   ],
 };
+
+module.exports = config;

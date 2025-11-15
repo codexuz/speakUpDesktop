@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu } = require("electron/main");
 const path = require("path");
+if (require('electron-squirrel-startup')) app.quit();
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -71,6 +72,9 @@ app.whenReady().then(() => {
     }
   });
 });
+
+
+app.setAppUserModelId("com.squirrel.SpeakUp.SpeakUp");
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

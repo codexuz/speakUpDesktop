@@ -13,13 +13,13 @@ const createWindow = () => {
     },
   });
 
-  win.loadURL("https://speakup.edumoacademy.uz");
+  win.loadURL("https://platform.mockmee.uz");
 };
 
 const createMenu = () => {
   const template = [
     {
-      label: "File",
+      label: "Main",
       submenu: [
         {
           label: "Exit",
@@ -33,25 +33,18 @@ const createMenu = () => {
       submenu: [
         { role: "reload" },
         { type: "separator" },
-        { role: "resetZoom" },
-        { role: "zoomIn" },
-        { role: "zoomOut" },
         { type: "separator" },
         { role: "togglefullscreen" },
       ],
     },
     {
-      label: "Window",
-      submenu: [{ role: "minimize" }, { role: "close" }],
-    },
-    {
       label: "Help",
       submenu: [
         {
-          label: "Learn More",
+          label: "Contact Support",
           click: async () => {
             const { shell } = require("electron");
-            await shell.openExternal("https://t.me/speakup_edumo");
+            await shell.openExternal("https://t.me/javlon_developer");
           },
         },
       ],
@@ -74,7 +67,7 @@ app.whenReady().then(() => {
 });
 
 
-app.setAppUserModelId("com.squirrel.SpeakUp.SpeakUp");
+app.setAppUserModelId("com.impulse.mockmee");
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
